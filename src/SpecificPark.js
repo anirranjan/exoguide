@@ -14,8 +14,8 @@ const SpecificPark = () => {
   const [park, setPark] = useState([]);
   const [activities, setActivities] = useState([]);
   const { id } = useParams();
-  let NPS_API_KEY = process.env.REACT_APP_API_KEY;
-  let MAPBOX_API_KEY = process.env.REACT_APP_MAP_API_KEY;
+  let NPS_API_KEY = "HAQVNmsmnTwHScNlhHGhEckm5asVMwxNEA9K1tcZ";
+  let MAPBOX_API_KEY = "pk.eyJ1IjoiYW5pcnJhbmphbiIsImEiOiJja3ZvZWh4a3djeHR2Mnd0OW1wOW1oYnVpIn0.0fwWRnF7zWhLbF29ApWflQ";
 
   //the useEffect hooks makes a request to the API to get information about the specific park
   useEffect(() => {

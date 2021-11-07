@@ -11,7 +11,7 @@ import { Route, BrowserRouter, Switch } from "react-router-dom";
 
 
 function App() {
-  let NPS_API_KEY = process.env.REACT_APP_API_KEY;
+  let NPS_API_KEY = "HAQVNmsmnTwHScNlhHGhEckm5asVMwxNEA9K1tcZ";
   const [activities, setActivites] = useState([]);
   const [parks, setParks] = useState([]);
 

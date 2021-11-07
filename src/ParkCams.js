@@ -10,7 +10,7 @@ import Button from "@mui/material/Button";
 const ParkCams = () => {
   const { id } = useParams();
   const [camData, setCamData] = useState([]);
-  let NPS_API_KEY = process.env.REACT_APP_API_KEY;
+  let NPS_API_KEY = "HAQVNmsmnTwHScNlhHGhEckm5asVMwxNEA9K1tcZ";
   //the useEffect hooks makes a request to the API to get non-streaming images from the park
   useEffect(() => {
     Axios.get(

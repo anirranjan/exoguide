@@ -11,14 +11,13 @@ import { Route, BrowserRouter, Switch } from "react-router-dom";
 
 
 function App() {
-  let NPS_API_KEY = "HAQVNmsmnTwHScNlhHGhEckm5asVMwxNEA9K1tcZ";
   const [activities, setActivites] = useState([]);
   const [parks, setParks] = useState([]);
 
   //the useEffect hook makes an API request to get the list of available activities
   useEffect(() => {
     Axios.get(
-      `https://developer.nps.gov/api/v1/activities?&api_key=${NPS_API_KEY}`
+      `https://developer.nps.gov/api/v1/activities?&api_key=${process.env.REACT_APP_NPS_API_KEY}`
     ).then((response) => {
 
       //create an array to store the activities retrieved from the the API request
@@ -29,11 +28,11 @@ function App() {
       //update the activities state with the array of activities
       setActivites(options);
     });
-  }, [NPS_API_KEY]);
+  }, []);
   
   //getParks makes an API request to get the list of parks that have the selected activity from the dropdown
   const getParks = (activityID) => {
-    Axios.get(`https://developer.nps.gov/api/v1/activities/parks?id=${activityID}&api_key=${NPS_API_KEY}`).then((response) => {
+    Axios.get(`https://developer.nps.gov/api/v1/activities/parks?id=${activityID}&api_key=${process.env.REACT_APP_NPS_API_KEY}`).then((response) => {
       //console.log(response.data.data[0].parks);
       
       //update the parks state with the array of parks that we receieved from the API

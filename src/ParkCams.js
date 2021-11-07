@@ -6,16 +6,15 @@ import Typography from "@mui/material/Typography";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import Button from "@mui/material/Button";
-import env from "react-dotenv";
 
 const ParkCams = () => {
   const { id } = useParams();
   const [camData, setCamData] = useState([]);
-
+  let NPS_API_KEY = "HAQVNmsmnTwHScNlhHGhEckm5asVMwxNEA9K1tcZ";
   //the useEffect hooks makes a request to the API to get non-streaming images from the park
   useEffect(() => {
     Axios.get(
-      `https://developer.nps.gov/api/v1/webcams?parkCode=${id}&api_key=${env.REACT_APP_API_KEY}`
+      `https://developer.nps.gov/api/v1/webcams?parkCode=${id}&api_key=${NPS_API_KEY}`
     ).then((response) => {
       for (var i = 0; i < response.data.data.length; i++) {
         if (response.data.data[i].images.length > 0) {
@@ -25,7 +24,7 @@ const ParkCams = () => {
         }
       }
     });
-  }, [id]);
+  }, [id, NPS_API_KEY]);
 
   //addData appends images that were found to the camData useState
   const addData = (newCamInfo) =>

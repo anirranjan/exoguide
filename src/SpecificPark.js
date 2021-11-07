@@ -14,18 +14,20 @@ const SpecificPark = () => {
   const [park, setPark] = useState([]);
   const [activities, setActivities] = useState([]);
   const { id } = useParams();
+  let NPS_API_KEY = process.env.REACT_APP_API_KEY;
+  let MAPBOX_API_KEY = process.env.REACT_APP_MAP_API_KEY;
 
   //the useEffect hooks makes a request to the API to get information about the specific park
   useEffect(() => {
     Axios.get(
-      `https://developer.nps.gov/api/v1/parks?parkCode=${id}&api_key=${process.env.REACT_APP_API_KEY}`
+      `https://developer.nps.gov/api/v1/parks?parkCode=${id}&api_key=${NPS_API_KEY}`
     ).then((response) => {
       setParkLat(parseFloat(response.data.data[0].latitude));
       setParkLng(parseFloat(response.data.data[0].longitude));
       setPark(response.data.data[0]);
       setActivities(response.data.data[0].activities);
     });
-  }, [id]);
+  }, [id, NPS_API_KEY]);
 
   return (
     <div className="parkData">
@@ -51,7 +53,7 @@ const SpecificPark = () => {
 
       {/* Display the park's location on a map */}
       <ReactMapGL
-        mapboxApiAccessToken={process.env.REACT_APP_MAP_API_KEY}
+        mapboxApiAccessToken={MAPBOX_API_KEY}
         latitude={parkLat}
         longitude={parkLng}
         zoom={8}

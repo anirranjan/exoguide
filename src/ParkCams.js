@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
 
 const ParkCams = () => {
   const { id } = useParams();
@@ -34,39 +35,71 @@ const ParkCams = () => {
     return (
       // display the page's heading
       <div className="parkData">
-        <Typography variant="h2" component="div">
-          {id} Park Camera Images
-        </Typography>
+        <Grid
+          container
+          direction="column"
+          justifyContent="left"
+          alignItems="left"
+          spacing={2}
+        >
+          <Grid item>
+            <Typography variant="h2" component="div">
+              {id} Park Images
+            </Typography>
+          </Grid>
 
-        {/* display images found in image gallery */}
-        <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
-          {camData.map((item) => (
-            <ImageListItem key={item.title}>
-              <img
-                src={`${item.url}?w=164&h=164&fit=crop&auto=format`}
-                srcSet={`${item.url}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                alt={item.altText}
-              />
-            </ImageListItem>
-          ))}
-        </ImageList>
+          <Grid item>
+            {/* display images found in image gallery */}
+            <ImageList
+              sx={{ width: 500, height: 450 }}
+              cols={3}
+              rowHeight={164}
+            >
+              {camData.map((item) => (
+                <ImageListItem key={item.title}>
+                  <img
+                    src={`${item.url}?w=164&h=164&fit=crop&auto=format`}
+                    srcSet={`${item.url}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                    alt={item.altText}
+                  />
+                </ImageListItem>
+              ))}
+            </ImageList>
+          </Grid>
 
-        {/* display button that links to the park's information page*/}
-        <Button variant="contained" component={Link} to={`/park/${id}`}>
-          {id} Information Page
-        </Button>
+          <Grid item>
+            {/* display button that links to the park's information page*/}
+            <Button variant="contained" component={Link} to={`/park/${id}`}>
+              {id} Information Page
+            </Button>
+          </Grid>
+        </Grid>
       </div>
     );
   } else {
     return (
       <div class="parkData">
-        {/* display unavailable images alert */}
-        <Alert severity="error">{id} - No Available Images at the moment</Alert>
+        <Grid
+          container
+          direction="column"
+          justifyContent="left"
+          alignItems="left"
+          spacing={2}
+        >
+          <Grid item>
+            {/* display unavailable images alert */}
+            <Alert severity="error">
+              {id} - No Available Images at the moment
+            </Alert>
+          </Grid>
 
-        {/* display button that links to the park's information page*/}
-        <Button variant="contained" component={Link} to={`/park/${id}`}>
-          {id} Information Page
-        </Button>
+          <Grid item>
+            {/* display button that links to the park's information page*/}
+            <Button variant="contained" component={Link} to={`/park/${id}`}>
+              {id} Information Page
+            </Button>
+          </Grid>
+        </Grid>
       </div>
     );
   }

@@ -34,7 +34,7 @@ const ParkList = ({ nationalParks }) => {
               component={Link}
               to={`/park/${nationalPark.parkCode}`}
             >
-              Information
+              Learn More
             </Button>
 
             {/* Button that links to park cameras component for the park*/}
@@ -44,7 +44,7 @@ const ParkList = ({ nationalParks }) => {
               component={Link}
               to={`/parkcams/${nationalPark.parkCode}`}
             >
-              Image
+              View Images
             </Button>
           </CardActions>
         </Card>
